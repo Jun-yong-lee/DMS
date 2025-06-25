@@ -54,24 +54,26 @@ def sniff_can_dbc(
             frame = can_bus.recv()   # arbitration_id, data, timestamp…
         except Exception:
             break
+        try:    
+            msg = db.get_message_by_frame_id(frame.arbitration_id)
+            if msg is None:
+                continue
 
-        msg = db.get_message_by_frame_id(frame.arbitration_id)
-        if msg is None:
-            continue
+            # 새로운 메시지 탐지
+            if msg.name not in seen_msgs:
+                seen_msgs.add(msg.name)
+                signals = [sig.name for sig in msg.signals]
+                msg_signals[msg.name] = signals
 
-        # 새로운 메시지 탐지
-        if msg.name not in seen_msgs:
-            seen_msgs.add(msg.name)
-            signals = [sig.name for sig in msg.signals]
-            msg_signals[msg.name] = signals
-
-            print("\n=== New CAN Message Detected ===")
-            print(f"Message: {msg.name} (ID=0x{msg.frame_id:X}, DLC={msg.length})")
-            print("Signals:")
-            for s in signals:
-                print(f"  - {s}")
-            print("=" * 30)
-
+                print("\n=== New CAN Message Detected ===")
+                print(f"Message: {msg.name} (ID=0x{msg.frame_id:X}, DLC={msg.length})")
+                print("Signals:")
+                for s in signals:
+                    print(f"  - {s}")
+                print("=" * 30)
+        except:
+            print("aa")
+            pass
     # 루프 종료
     print(f"\n[INFO] PID[{os.getpid()}] '{d_name}' sniffing stopped.")
     print(f"[INFO] Total unique messages: {len(seen_msgs)}")
@@ -106,7 +108,7 @@ if __name__ == "__main__":
     PRINT_STAT  = config['CAN']['print_can_status']
 
     # 사용할 DBC 파일명 (config나 인자로 변경 가능)
-    dbc_file = 'C_CAN.dbc'  # 예: 'P_CAN.dbc', 'C_CAN.dbc', 'M_CAN.dbc' 등
+    dbc_file = 'M_CAN.dbc'  # 예: 'P_CAN.dbc', 'C_CAN.dbc', 'M_CAN.dbc' 등
 
     # 스레드 이벤트
     stop_evt = threading.Event()
