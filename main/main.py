@@ -18,7 +18,7 @@ from playsound import playsound
 from config import config
 
 def main():
-    from receive_data import receive_CAN, receive_audio, WindowClass #, receive_HMI
+    from receive_data import receive_CAN_C, receive_CAN_M, receive_audio, WindowClass #, receive_HMI
     from receive_GNSS import receive_GNSS
     from receive_image import receive_realsense
     from check_status import check_driving_cycle, check_velocity, check_driver, check_odometer, check_intention, check_passenger, check_weight
@@ -44,7 +44,8 @@ def main():
     P_db = cantools.database.load_file(os.path.join(CAN_basePath, 'P_CAN.dbc'))
     C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
     M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
-    can_bus = can.interface.Bus('can0', bustype='socketcan')
+    can_bus_c = can.interface.Bus('can0', bustype='socketcan')
+    can_bus_m = can.interface.Bus('can1', bustype='socketcan')
     print_can_status = config['CAN']['print_can_status']
     #####################
 
@@ -71,12 +72,12 @@ def main():
     #####################
 
     ### Driving cycle check ###
-    check_driving_cycle(P_db, can_bus)
+    check_driving_cycle(P_db, can_bus_c)
     time.sleep(0.5)
 
 
     ### Velocity status check ###
-    # check_velocity(P_db, can_bus)
+    # check_velocity(P_db, can_bus_c)
     time.sleep(0.5)
 
 
@@ -88,7 +89,7 @@ def main():
     PASSENGER_WEIGHTS = check_passenger()
 
     ### START ODOMETRY CHECK ###
-    START_ODO = check_odometer(C_db, can_bus)
+    START_ODO = check_odometer(C_db, can_bus_c)
 
     ### DATASET path setting ###
     if save_flag:
@@ -105,19 +106,24 @@ def main():
     stop_event = multiprocessing.Event()
     send_conn, recv_conn = multiprocessing.Pipe()
 
-    data_names = ['CAN', 'audio', 
+    data_names = ['CAN_C',
+                  'CAN_M',
+                  'audio', 
                   'GNSS', 
                   'INSIDE_FRONT_CAMERA',
                   'INSIDE_SIDE_CAMERA',
                   'OUTSIDE_FRONT_CENTER_CAMERA',
                   ] # 'video_visaulizer'
-    proc_functions = [receive_CAN, receive_audio,
+    proc_functions = [receive_CAN_C,
+                      receive_CAN_M,
+                      receive_audio,
                       receive_GNSS,
                       receive_realsense,
                       receive_realsense,
                       receive_realsense,
                       ] # visualize_video
-    func_args = {'CAN': (P_db, C_db, can_bus, print_can_status),
+    func_args = {'CAN_C': (P_db, C_db, can_bus_c, print_can_status),
+                'CAN_M': (M_db, can_bus_m, print_can_status),
                 'audio': (FORMAT, RATE, CHANNELS, CHUNK),
                 'GNSS': (config, print_gnss_status, receive_trf_info),
                 'INSIDE_FRONT_CAMERA': ('internal', 'CENTER', '043322071182', 30, 1920, 1080),
@@ -170,12 +176,12 @@ def main():
 
 
     ### Velocity status check ###
-    # check_velocity(P_db, can_bus)
+    # check_velocity(P_db, can_bus_c)
     time.sleep(0.5)
 
 
     ### END ODOMETRY CHECK ###
-    END_ODO = check_odometer(C_db, can_bus)
+    END_ODO = check_odometer(C_db, can_bus_c)
     odo_df = pd.DataFrame([(START_ODO, END_ODO, int(END_ODO) - int(START_ODO), version)], columns=["START", "END", "TOTAL", "VERSION"])
     if save_flag:
         odo_df.to_csv(f"{DATASET_PATH}/START_END_TOTAL_{int(END_ODO) - int(START_ODO)}km.csv")
