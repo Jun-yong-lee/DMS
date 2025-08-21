@@ -43,6 +43,7 @@ def main():
     CAN_basePath = os.path.join(save_path, 'dbc')
     P_db = cantools.database.load_file(os.path.join(CAN_basePath, 'P_CAN.dbc'))
     C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
+    M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
     can_bus = can.interface.Bus('can0', bustype='socketcan')
     print_can_status = config['CAN']['print_can_status']
     #####################
