@@ -76,7 +76,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     print(f"[INFO] CAN 수집 종료, 총 {cnt}개 프레임 저장됨.")
 
 if __name__ == "__main__":
-    can_name = "M" # "C"
+    can_name = "C" # "C"
     save_path = config['SAVE_PATH']
 
     if can_name == "M":
