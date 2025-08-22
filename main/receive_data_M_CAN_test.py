@@ -75,21 +75,65 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     print(f"[INFO] CAN 수집 종료, 총 {cnt}개 프레임 저장됨.")
 
 if __name__ == "__main__":
-    save_path = os.path.join("media", "imlab", "Samsung_T5", "dms_rev1")
-    CAN_basePath = os.path.join(save_path, 'dbc')
-    M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
+    can_name = "M" # "C"
 
-    can_bus_m = can.interface.Bus('can1', bustype='socketcan')
+    if can_name == "M":
+        save_path = os.path.join("media", "imlab", "Samsung_T5", "dms_rev1")
+        CAN_basePath = os.path.join(save_path, 'dbc')
+        M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
 
-    msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'HU_CLU_PE_06',
-                'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01',
-                'TP_HU_CLU_HF', 'HU_DATC_PE_00']
+        can_bus_m = can.interface.Bus('can1', bustype='socketcan')
 
-    signal_names = ['HU_VolumeStatus', 'C_DRVUnlockState', 'Byte0_TCP_4E8',
-                    'HU_VehiclePwr', 'Byte0_TCP_485', 'HU_PhoneActivity',
-                    'Clu_RheostatLvl']
+        msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'HU_CLU_PE_06',
+                    'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01',
+                    'TP_HU_CLU_HF', 'HU_DATC_PE_00']
 
-    save_flag = True
+        signal_names = ['HU_VolumeStatus', 'C_DRVUnlockState', 'Byte0_TCP_4E8',
+                        'HU_VehiclePwr', 'Byte0_TCP_485', 'HU_PhoneActivity',
+                        'Clu_RheostatLvl']
 
-    # 함수 호출
-    receive_CAN_test(M_db, can_bus_m, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
+        save_flag = True
+
+        # 함수 호출
+        receive_CAN_test(M_db, can_bus_m, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
+        
+    elif can_name == "C":
+        save_path = os.path.join("media", "imlab", "Samsung_T5", "dms_rev1")
+        CAN_basePath = os.path.join(save_path, 'dbc')
+        C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
+
+        can_bus_c = can.interface.Bus('can0', bustype='socketcan')
+
+        msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'HU_CLU_PE_06',
+                    'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01',
+                    'TP_HU_CLU_HF', 'HU_DATC_PE_00']
+        msg_list = ['HEV_PC1', 'HEV_PC2', 'HEV_PC4',
+                    'HEV_PC5','HEV_PC6', 'HEV_PC12',
+                    'SAS11', 'ESP12', 'WHL_SPD11',
+                    'CGW1', 'CLU12', 'CLU15',
+                    'DATC3', 'CGW4', 'TCS15',
+                    'BCW11']
+        
+        signal_names = ['CF_Ems_EngStat', 'CR_Brk_StkDep_Pc', 'CR_Ems_AccPedDep_Pc',
+                        'CR_Ems_EngSpd_rpm', 'CR_Ems_FueCon_uL', 'CR_Ems_VehSpd_Kmh',
+                        'CF_Tcu_TarGe', 'SAS_Angle', 'CYL_PRES',
+                        'CYL_PRES_FLAG', 'LAT_ACCEL', 'LONG_ACCEL',
+                        'YAW_RATE', 'WHL_SPD_FL', 'WHL_SPD_FR',
+                        'WHL_SPD_RL', 'WHL_SPD_RR', 'BAT_SOC',
+                        'CF_Gway_HeadLampHigh', 'CF_Gway_HeadLampLow', 'CR_Hcu_HigFueEff_Pc',
+                        'CR_Hcu_NorFueEff_Pc', 'CF_Hcu_DriveMode', 'CR_Fatc_OutTempSns_C',
+                        'CR_Hcu_EcoLvl', 'CR_Hcu_FuelEco_MPG', 'CR_Hcu_HevMod',
+                        'CF_Ems_BrkForAct', 'CR_Ems_EngColTemp_C', 'CF_Clu_InhibitD',
+                        'CF_Clu_InhibitN', 'CF_Clu_InhibitP', 'CF_Clu_InhibitR',
+                        'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw', \
+                        # latest added signals
+                        'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
+                        'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
+                        ]
+
+        save_flag = True
+
+        # 함수 호출
+        receive_CAN_test(C_db, can_bus_c, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
+    else:
+        print("Invalid CAN name. Please use 'M' or 'C'.")
