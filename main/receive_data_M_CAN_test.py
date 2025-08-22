@@ -14,7 +14,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     msg_list = msg_list if msg_list else []
     print(msg_list)
     signal_names = signal_names if signal_names else []
-    print(msg_list)
+    print(signal_names)
 
     CAN_PATH = os.path.join(save_path, 'CAN')
     if save_flag and not os.path.isdir(CAN_PATH):
@@ -41,14 +41,15 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             for msg in db_msg:
                 if can_msg.arbitration_id == msg.frame_id:
                     can_dict = db.decode_message(can_msg.arbitration_id, can_msg.data)
-                    row = {k: can_dict.get(k, None) for k in signal_names}
-                    row['timestamp'] = can_msg.timestamp
-                    row['timestamp2'] = timestamp2
-                    df = df.append(row, ignore_index=True)
+                    # row = {k: can_dict.get(k, None) for k in signal_names}
+                    can_dict = {k: v for k, v in can_dict.items() if k in signal_names}
+                    can_dict['timestamp'] = can_msg.timestamp
+                    can_dict['timestamp2'] = timestamp2
+                    df = df.append(can_dict, ignore_index=True)
                     cnt += 1
 
                     if print_status:
-                        print(f"[{cnt}] {row}")
+                        print(f"[{cnt}] {can_dict}")
 
                     # 100개마다 저장 (필요시 조정)
                     if len(df) >= 10:
