@@ -112,7 +112,7 @@ if __name__ == "__main__":
                     'HEV_PC5','HEV_PC6', 'HEV_PC12',
                     'SAS11', 'ESP12', 'WHL_SPD11',
                     'CGW1', 'CLU12', 'CLU15',
-                    # 'DATC3',
+                    'DATC3',
                     # 'CGW4', 'TCS15',
                     # 'BCW11'
                     ]
@@ -128,9 +128,9 @@ if __name__ == "__main__":
                         'CR_Hcu_EcoLvl', 'CR_Hcu_FuelEco_MPG', 'CR_Hcu_HevMod',
                         'CF_Ems_BrkForAct', 'CR_Ems_EngColTemp_C', 'CF_Clu_InhibitD',
                         'CF_Clu_InhibitN', 'CF_Clu_InhibitP', 'CF_Clu_InhibitR',
-                        'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw'
+                        'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw',
                         # latest added signals
-                        # 'CF_Datc_TempDispUnit',
+                        'CF_Datc_TempDispUnit',
                         # 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
                         # 'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
                         ]
