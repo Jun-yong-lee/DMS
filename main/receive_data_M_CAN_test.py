@@ -61,13 +61,15 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
                         cnt += 1
                         df = df.append(can_dict, ignore_index=True)
 
-            if stop_event is not None and stop_event.is_set():
-                break
+            # if stop_event is not None and stop_event.is_set():
+            #     break
 
         except KeyboardInterrupt:
             print("[INFO] 수집 중단 (KeyboardInterrupt)")
+            break
         except Exception as e:
             print(f"[ERROR] {e}")
+            break
 
     # # 남은 데이터 저장
     # if save_flag and not df.empty:
