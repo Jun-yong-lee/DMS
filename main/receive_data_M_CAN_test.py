@@ -49,7 +49,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
                         print(f"[{cnt}] {row}")
 
                     # 100개마다 저장 (필요시 조정)
-                    if len(df) >= 100:
+                    if len(df) >= 10:
                         if save_flag:
                             if first:
                                 df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), index=False)
