@@ -38,6 +38,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             can_msg = can_bus.recv()
             timestamp2 = time.time()
             for msg in db_msg:
+                print(msg)
                 if can_msg.arbitration_id == msg.frame_id:
                     can_dict = db.decode_message(can_msg.arbitration_id, can_msg.data)
                     # row = {k: can_dict.get(k, None) for k in signal_names}
