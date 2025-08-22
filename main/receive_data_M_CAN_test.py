@@ -38,10 +38,8 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             can_msg = can_bus.recv()
             timestamp2 = time.time()
             for msg in db_msg:
-                print("a")
                 if can_msg.arbitration_id == msg.frame_id:
                     can_dict = db.decode_message(can_msg.arbitration_id, can_msg.data)
-                    print(can_dict)
                     # row = {k: can_dict.get(k, None) for k in signal_names}
                     can_dict = {k: v for k, v in can_dict.items() if k in signal_names}
                     can_dict['timestamp'] = can_msg.timestamp
@@ -107,6 +105,7 @@ if __name__ == "__main__":
         receive_CAN_test(M_db, can_bus_m, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
         
     elif can_name == "C":
+        print("C")
         save_path = save_path
         CAN_basePath = os.path.join(save_path, 'dbc')
         C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
@@ -132,7 +131,7 @@ if __name__ == "__main__":
                         'CR_Hcu_EcoLvl', 'CR_Hcu_FuelEco_MPG', 'CR_Hcu_HevMod',
                         'CF_Ems_BrkForAct', 'CR_Ems_EngColTemp_C', 'CF_Clu_InhibitD',
                         'CF_Clu_InhibitN', 'CF_Clu_InhibitP', 'CF_Clu_InhibitR',
-                        'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw', \
+                        'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw'
                         # latest added signals
                         # 'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
                         # 'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
