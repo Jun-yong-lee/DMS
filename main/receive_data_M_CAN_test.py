@@ -12,9 +12,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     실제 환경에서 CAN 신호를 받아와 csv로 저장하는 테스트 함수
     """
     msg_list = msg_list if msg_list else []
-    print(msg_list)
     signal_names = signal_names if signal_names else []
-    print(signal_names)
 
     CAN_PATH = os.path.join(save_path, 'CAN')
     if save_flag and not os.path.isdir(CAN_PATH):
@@ -39,7 +37,6 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             timestamp2 = time.time()
             for msg in db_msg:
                 if can_msg.arbitration_id == msg.frame_id:
-                    print("a")
                     can_dict = db.decode_message(can_msg.arbitration_id, can_msg.data)
                     # row = {k: can_dict.get(k, None) for k in signal_names}
                     can_dict = {k: v for k, v in can_dict.items() if k in signal_names}
@@ -106,7 +103,6 @@ if __name__ == "__main__":
         receive_CAN_test(M_db, can_bus_m, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
         
     elif can_name == "C":
-        print("C")
         save_path = save_path
         CAN_basePath = os.path.join(save_path, 'dbc')
         C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
