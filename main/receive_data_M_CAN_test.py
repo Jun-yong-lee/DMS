@@ -106,9 +106,6 @@ if __name__ == "__main__":
 
         can_bus_c = can.interface.Bus('can0', bustype='socketcan')
 
-        msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'HU_CLU_PE_06',
-                    'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01',
-                    'TP_HU_CLU_HF', 'HU_DATC_PE_00']
         msg_list = ['HEV_PC1', 'HEV_PC2', 'HEV_PC4',
                     'HEV_PC5','HEV_PC6', 'HEV_PC12',
                     'SAS11', 'ESP12', 'WHL_SPD11',
@@ -129,8 +126,8 @@ if __name__ == "__main__":
                         'CF_Clu_InhibitN', 'CF_Clu_InhibitP', 'CF_Clu_InhibitR',
                         'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw', \
                         # latest added signals
-                        'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
-                        'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
+                        # 'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
+                        # 'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
                         ]
 
         save_flag = True
