@@ -52,7 +52,6 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
                                 df.to_csv(CAN_PATH + "/CAN" + f"{start_time}_test.csv", mode='a', header=False, index=False)
 
                         cnt += 1
-                        print(cnt)
                         df = df[0:0]
                         df = df.append(can_dict, ignore_index=True)
                     else:
