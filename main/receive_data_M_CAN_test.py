@@ -12,7 +12,9 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     실제 환경에서 CAN 신호를 받아와 csv로 저장하는 테스트 함수
     """
     msg_list = msg_list if msg_list else []
+    print(msg_list)
     signal_names = signal_names if signal_names else []
+    print(msg_list)
 
     CAN_PATH = os.path.join(save_path, 'CAN')
     if save_flag and not os.path.isdir(CAN_PATH):
