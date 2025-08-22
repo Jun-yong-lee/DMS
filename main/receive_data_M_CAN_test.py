@@ -91,8 +91,9 @@ if __name__ == "__main__":
         msg_list = ['CLU_HU_PE_01',
                     'HU_Car_PE_01',
 
-                    'HU_CLU_PE_05', 'HU_CLU_PE_06',
-                    'GW_IPM_PE_2',  'HU_DATC_PE_00'
+                    'HU_CLU_PE_05',
+                    'GW_IPM_PE_2',
+                    'HU_DATC_PE_00',
 
                     # 'TP_HU_FM_CLU',
                     # 'TP_HU_CLU_HF'
@@ -102,9 +103,7 @@ if __name__ == "__main__":
                         'HU_VehiclePwr',
                         'HU_VolumeStatus',
                         'C_DRVUnlockState',
-                        'HU_VehiclePwr',
                         'HU_PhoneActivity',
-                        'Clu_RheostatLvl',
             # 'Byte0_TCP_485', 'Byte0_TCP_4E8'
             ]
 
