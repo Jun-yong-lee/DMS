@@ -104,7 +104,7 @@ if __name__ == "__main__":
         CAN_basePath = os.path.join(save_path, 'dbc')
         C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
 
-        can_bus_c = can.interface.Bus('can0', bustype='socketcan')
+        can_bus_c = can.interface.Bus('can1', bustype='socketcan')
 
         msg_list = ['HEV_PC1', 'HEV_PC2', 'HEV_PC4',
                     'HEV_PC5','HEV_PC6', 'HEV_PC12',
