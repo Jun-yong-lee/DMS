@@ -26,8 +26,7 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             db_msg.append(msg)
 
     timestamp_cols = ['timestamp', 'timestamp2']
-    all_columns = signal_names + timestamp_cols
-    df = pd.DataFrame(columns=all_columns)
+    df = pd.DataFrame(columns=timestamp_cols)
 
     cnt = 0
     first = True
@@ -39,7 +38,6 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             can_msg = can_bus.recv()
             timestamp2 = time.time()
             for msg in db_msg:
-                print("a")
                 if can_msg.arbitration_id == msg.frame_id:
                     can_dict = db.decode_message(can_msg.arbitration_id, can_msg.data)
                     # row = {k: can_dict.get(k, None) for k in signal_names}
