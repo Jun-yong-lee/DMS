@@ -112,8 +112,8 @@ if __name__ == "__main__":
                     'HEV_PC5','HEV_PC6', 'HEV_PC12',
                     'SAS11', 'ESP12', 'WHL_SPD11',
                     'CGW1', 'CLU12', 'CLU15',
-                    # 'DATC3', 'CGW4', 'TCS15',
-                    # 'BCW11'
+                    'DATC3', 'CGW4', 'TCS15',
+                    'BCW11'
                     ]
         
         signal_names = ['CF_Ems_EngStat', 'CR_Brk_StkDep_Pc', 'CR_Ems_AccPedDep_Pc',
@@ -129,8 +129,8 @@ if __name__ == "__main__":
                         'CF_Clu_InhibitN', 'CF_Clu_InhibitP', 'CF_Clu_InhibitR',
                         'CF_Clu_VehicleSpeed', 'CF_Clu_Odometer', 'CF_Gway_TSigLHSw', 'CF_Gway_TSigRHSw'
                         # latest added signals
-                        # 'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
-                        # 'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
+                        'CF_Datc_TempDispUnit', 'CF_Gway_HazardSw', 'CF_Gway_WiperSwState', 'CF_Gway_WiperIntT', 'CF_Gway_WiperIntSw', 'CF_Gway_WiperLowSw', \
+                        'CF_Gway_WiperHighSw', 'CF_Gway_WiperAutoSw', 'CF_Gway_DrvSeatBeltSw', 'ESC_Off_Step', 'CF_BCW_Stat', 'CF_Gway_HoodSw'
                         ]
 
         save_flag = True
