@@ -178,10 +178,11 @@ def receive_CAN_M(d_name, save_flag, DATASET_PATH, M_db, can_bus, print_status, 
     MSG_LENGTH = 0
 
     for msg in M_db.messages:
-        if msg.name in M_db.messages:
+        if msg.name in M_msg_list:
             db_msg.append(msg)
             M_msg_name.append(msg.name)
             MSG_LENGTH += len(msg.signals)
+
 
     M_signal_names = ['HU_VolumeStatus', 'C_DRVUnlockState', 'Byte0_TCP_4E8', 'HU_VehiclePwr', 'Byte0_TCP_485', 'HU_PhoneActivity', 'Clu_RheostatLvl'   
 
