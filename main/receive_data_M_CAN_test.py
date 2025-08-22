@@ -34,8 +34,8 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
     start_time = time.strftime("%Y_%m_%d_%H_%M", time.localtime(time.time()))
     print(f"[INFO] CAN 수집 시작 ({start_time})")
 
-    try:
-        while True:
+    while(True):
+        try:
             can_msg = can_bus.recv()
             timestamp2 = time.time()
             for msg in db_msg:
@@ -64,17 +64,17 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
             if stop_event is not None and stop_event.is_set():
                 break
 
-    except KeyboardInterrupt:
-        print("[INFO] 수집 중단 (KeyboardInterrupt)")
-    except Exception as e:
-        print(f"[ERROR] {e}")
+        except KeyboardInterrupt:
+            print("[INFO] 수집 중단 (KeyboardInterrupt)")
+        except Exception as e:
+            print(f"[ERROR] {e}")
 
-    # 남은 데이터 저장
-    if save_flag and not df.empty:
-        if first:
-            df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), index=False)
-        else:
-            df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), mode='a', header=False, index=False)
+    # # 남은 데이터 저장
+    # if save_flag and not df.empty:
+    #     if first:
+    #         df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), index=False)
+    #     else:
+    #         df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), mode='a', header=False, index=False)
 
     print(f"[INFO] CAN 수집 종료, 총 {cnt}개 프레임 저장됨.")
 
