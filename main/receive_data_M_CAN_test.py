@@ -110,8 +110,9 @@ if __name__ == "__main__":
                     'HEV_PC5','HEV_PC6', 'HEV_PC12',
                     'SAS11', 'ESP12', 'WHL_SPD11',
                     'CGW1', 'CLU12', 'CLU15',
-                    'DATC3', 'CGW4', 'TCS15',
-                    'BCW11']
+                    # 'DATC3', 'CGW4', 'TCS15',
+                    # 'BCW11'
+                    ]
         
         signal_names = ['CF_Ems_EngStat', 'CR_Brk_StkDep_Pc', 'CR_Ems_AccPedDep_Pc',
                         'CR_Ems_EngSpd_rpm', 'CR_Ems_FueCon_uL', 'CR_Ems_VehSpd_Kmh',
