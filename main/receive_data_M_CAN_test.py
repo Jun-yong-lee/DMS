@@ -46,10 +46,10 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
                     if len(df.columns) >= len(signal_names) + len(timestamp_cols):
                         if save_flag:
                             if first:
-                                df.to_csv(CAN_PATH + "/CAN" + f"{start_time}_test.csv", index=False)
+                                df.to_csv(CAN_PATH + f"{start_time}_test.csv", index=False)
                                 first = False
                             else:
-                                df.to_csv(CAN_PATH + "/CAN" + f"{start_time}_test.csv", mode='a', header=False, index=False)
+                                df.to_csv(CAN_PATH + f"{start_time}_test.csv", mode='a', header=False, index=False)
 
                         cnt += 1
                         df = df[0:0]
