@@ -3,6 +3,7 @@ import time
 import pandas as pd
 import cantools
 import can
+from config import config
 
 
 def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False, stop_event=None,
@@ -76,9 +77,10 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
 
 if __name__ == "__main__":
     can_name = "M" # "C"
+    save_path = config['SAVE_PATH']
 
     if can_name == "M":
-        save_path = os.path.join("media", "imlab", "Samsung_T5", "dms_rev1")
+        save_path = save_path
         CAN_basePath = os.path.join(save_path, 'dbc')
         M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
 
@@ -98,7 +100,7 @@ if __name__ == "__main__":
         receive_CAN_test(M_db, can_bus_m, save_path, save_flag=save_flag, print_status=True, msg_list=msg_list, signal_names=signal_names)
         
     elif can_name == "C":
-        save_path = os.path.join("media", "imlab", "Samsung_T5", "dms_rev1")
+        save_path = save_path
         CAN_basePath = os.path.join(save_path, 'dbc')
         C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
 
