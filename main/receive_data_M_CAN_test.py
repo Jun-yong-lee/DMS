@@ -91,16 +91,21 @@ if __name__ == "__main__":
         msg_list = ['CLU_HU_PE_01',
                     'HU_Car_PE_01',
 
-                    # 'HU_CLU_PE_05', 'HU_CLU_PE_06',
-                    # 'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01',
-                    # 'TP_HU_CLU_HF', 'HU_DATC_PE_00'
+                    'HU_CLU_PE_05', 'HU_CLU_PE_06',
+                    'GW_IPM_PE_2',  'HU_DATC_PE_00'
+
+                    # 'TP_HU_FM_CLU',
+                    # 'TP_HU_CLU_HF'
                     ]
 
         signal_names = ['Clu_RheostatLvl',
                         'HU_VehiclePwr',
-            # 'HU_VolumeStatus', 'C_DRVUnlockState', 'Byte0_TCP_4E8',
-            #             'HU_VehiclePwr', 'Byte0_TCP_485', 'HU_PhoneActivity',
-            #             'Clu_RheostatLvl'
+                        'HU_VolumeStatus',
+                        'C_DRVUnlockState',
+                        'HU_VehiclePwr',
+                        'HU_PhoneActivity',
+                        'Clu_RheostatLvl',
+            # 'Byte0_TCP_485', 'Byte0_TCP_4E8'
             ]
 
         save_flag = True
