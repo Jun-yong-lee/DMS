@@ -45,21 +45,21 @@ def receive_CAN_test(db, can_bus, save_path, save_flag=True, print_status=False,
                     can_dict = {k: v for k, v in can_dict.items() if k in signal_names}
                     can_dict['timestamp'] = can_msg.timestamp
                     can_dict['timestamp2'] = timestamp2
-                    df = df.append(can_dict, ignore_index=True)
-                    cnt += 1
 
-                    if print_status:
-                        print(f"[{cnt}] {can_dict}")
-
-                    # 100개마다 저장 (필요시 조정)
-                    if len(df) >= 10:
+                    if len(df.columns) >= len(signal_names) + len(timestamp_cols):
                         if save_flag:
                             if first:
-                                df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), index=False)
+                                df.to_csv(CAN_PATH + f"{start_time}_test.csv", index=False)
                                 first = False
                             else:
-                                df.to_csv(os.path.join(CAN_PATH, f"{start_time}_test.csv"), mode='a', header=False, index=False)
+                                df.to_csv(CAN_PATH + f"{start_time}_test.csv", mode='a', header=False, index=False)
+
+                        cnt += 1
                         df = df[0:0]
+                        df = df.append(can_dict, ignore_index=True)
+                    else:
+                        cnt += 1
+                        df = df.append(can_dict, ignore_index=True)
 
             if stop_event is not None and stop_event.is_set():
                 break
