@@ -86,7 +86,7 @@ if __name__ == "__main__":
         CAN_basePath = os.path.join(save_path, 'dbc')
         M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
 
-        can_bus_m = can.interface.Bus('can1', bustype='socketcan')
+        can_bus_m = can.interface.Bus('can2', bustype='socketcan')
 
         msg_list = ['CLU_HU_PE_01',
                     # 'HU_CLU_PE_05', 'HU_CLU_PE_06',
