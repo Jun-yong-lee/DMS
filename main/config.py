@@ -25,6 +25,7 @@ config = {'SAVE_PATH': '/media/imlab/Samsung_T54/dms_rev1/',
                    'OUTSIDE_FRONT_CENTER_CAMERA': True,
                    'audio': False,
                    'GNSS' : True,
+                   'Key_input' : True,
                   #  '''
                   #  TRAFFIC_INFO must be collected with GNSS
                   #  '''

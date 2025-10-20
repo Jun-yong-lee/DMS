@@ -21,6 +21,7 @@ def main():
     from receive_data import receive_CAN_C, receive_CAN_M, receive_audio, WindowClass #, receive_HMI
     from receive_GNSS import receive_GNSS
     from receive_image import receive_realsense
+    from receive_key import receive_key_input
     from check_status import check_driving_cycle, check_velocity, check_driver, check_odometer, check_intention, check_passenger, check_weight
     # from config import config
 
@@ -113,6 +114,7 @@ def main():
                   'INSIDE_FRONT_CAMERA',
                   'INSIDE_SIDE_CAMERA',
                   'OUTSIDE_FRONT_CENTER_CAMERA',
+                  'Key_input'
                   ] # 'video_visaulizer'
     proc_functions = [receive_CAN_C,
                       receive_CAN_M,
@@ -121,6 +123,7 @@ def main():
                       receive_realsense,
                       receive_realsense,
                       receive_realsense,
+                      receive_key_input
                       ] # visualize_video
     func_args = {'CAN_C': (P_db, C_db, can_bus_c, print_can_status),
                 'CAN_M': (M_db, can_bus_m, print_can_status),
@@ -129,6 +132,7 @@ def main():
                 'INSIDE_FRONT_CAMERA': ('internal', 'CENTER', '043322071182', 30, 1920, 1080),
                 'INSIDE_SIDE_CAMERA': ('internal', 'SIDE', '102422072555', 30, 1920, 1080),
                 'OUTSIDE_FRONT_CENTER_CAMERA': ('external', 'FC', '102422073082', 60, 960, 540),
+                'Key_input': ()
                 # 'video_visual': (recv_conn),
                 }
 
