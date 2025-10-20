@@ -14,7 +14,7 @@ from datetime import datetime, timedelta
 from config import config
 
 def main():
-    from receive_data import receive_CAN_C, receive_CAN_M, receive_audio, WindowClass #, receive_HMI
+    from receive_data import receive_CAN_C, receive_CAN_M, receive_key_input, receive_audio, WindowClass #, receive_HMI
     from receive_GNSS import receive_GNSS
     from receive_image import receive_realsense
     from check_status import check_driving_cycle, check_velocity, check_driver, check_odometer, check_intention, check_passenger, check_weight
@@ -66,12 +66,15 @@ def main():
 
     data_names = ['CAN_C',
                   'CAN_M',
+                  'KEY_INPUT',
                   ]
     proc_functions = [receive_CAN_C,
                       receive_CAN_M,
+                      receive_key_input,
                       ]
     func_args = {'CAN_C': (P_db, C_db, can_bus_c, print_can_status),
                 'CAN_M': (M_db, can_bus_m, print_can_status),
+                'KEY_INPUT': (),
                 }
 
 
