@@ -65,11 +65,6 @@ def receive_CAN_C(d_name, save_flag, DATASET_PATH, P_db, C_db, can_bus, print_st
 
 
     MSG_LENGTH = 0
-    # for msg in P_db.messages:
-    #     if msg.name in P_msg_list :
-    #         db_msg.append(msg)
-    #         P_msg_name.append(msg.name)
-    #         MSG_LENGTH += len(msg.signals)
     for msg in C_db.messages:
         if msg.name in C_msg_list :
             db_msg.append(msg)
@@ -173,7 +168,11 @@ def receive_CAN_M(d_name, save_flag, DATASET_PATH, M_db, can_bus, print_status, 
     db_msg = []
     M_msg_name = []
 
-    M_msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'HU_CLU_PE_06', 'GW_IPM_PE_2', 'TP_HU_FM_CLU', 'HU_Car_PE_01', 'TP_HU_CLU_HF', 'HU_DATC_PE_00']
+    M_msg_list = ['CLU_HU_PE_01', 'HU_CLU_PE_05', 'GW_IPM_PE_2', 'HU_Car_PE_01', 'HU_DATC_PE_00',
+                #   'TP_HU_FM_CLU',
+                #   'TP_HU_CLU_HF',
+                #   'HU_CLU_PE_06',
+                  ]
 
     MSG_LENGTH = 0
 
@@ -184,7 +183,9 @@ def receive_CAN_M(d_name, save_flag, DATASET_PATH, M_db, can_bus, print_status, 
             MSG_LENGTH += len(msg.signals)
 
 
-    M_signal_names = ['HU_VolumeStatus', 'C_DRVUnlockState', 'Byte0_TCP_4E8', 'HU_VehiclePwr', 'Byte0_TCP_485', 'HU_PhoneActivity', 'Clu_RheostatLvl'   
+    M_signal_names = ['HU_VolumeStatus', 'C_DRVUnlockState', 'HU_VehiclePwr', 'HU_PhoneActivity', 'Clu_RheostatLvl',
+                      #     'Byte0_TCP_4E8',
+                      #     'Byte0_TCP_485',
 
     ]
 
