@@ -1,4 +1,3 @@
-# receive_key_input.py
 import os
 import time
 import pandas as pd
