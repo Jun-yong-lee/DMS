@@ -66,7 +66,6 @@ def main():
 
     data_names = ['CAN_C',
                   'CAN_M',
-                  'audio', 
                   ]
     proc_functions = [receive_CAN_C,
                       receive_CAN_M,
