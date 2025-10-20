@@ -19,6 +19,7 @@ from config import config
 
 def main():
     from receive_data import receive_CAN_C, receive_CAN_M, receive_audio, WindowClass #, receive_HMI
+    from receive_key import receive_key_input
     from receive_GNSS import receive_GNSS
     from receive_image import receive_realsense
     from check_status import check_driving_cycle, check_velocity, check_driver, check_odometer, check_intention, check_passenger, check_weight
@@ -45,7 +46,7 @@ def main():
     C_db = cantools.database.load_file(os.path.join(CAN_basePath, 'C_CAN.dbc'))
     M_db = cantools.database.load_file(os.path.join(CAN_basePath, 'M_CAN.dbc'))
     can_bus_c = can.interface.Bus('can0', bustype='socketcan')
-    can_bus_m = can.interface.Bus('can1', bustype='socketcan')
+    can_bus_m = can.interface.Bus('can2', bustype='socketcan')
     print_can_status = config['CAN']['print_can_status']
     #####################
 
@@ -108,14 +109,16 @@ def main():
 
     data_names = ['CAN_C',
                   'CAN_M',
-                  'audio', 
-                  'GNSS', 
+                  'KEY_INPUT',
+                  'audio',
+                  'GNSS',
                   'INSIDE_FRONT_CAMERA',
                   'INSIDE_SIDE_CAMERA',
                   'OUTSIDE_FRONT_CENTER_CAMERA',
                   ] # 'video_visaulizer'
     proc_functions = [receive_CAN_C,
                       receive_CAN_M,
+                      receive_key_input,
                       receive_audio,
                       receive_GNSS,
                       receive_realsense,
@@ -124,6 +127,7 @@ def main():
                       ] # visualize_video
     func_args = {'CAN_C': (P_db, C_db, can_bus_c, print_can_status),
                 'CAN_M': (M_db, can_bus_m, print_can_status),
+                'KEY_INPUT': (),
                 'audio': (FORMAT, RATE, CHANNELS, CHUNK),
                 'GNSS': (config, print_gnss_status, receive_trf_info),
                 'INSIDE_FRONT_CAMERA': ('internal', 'CENTER', '043322071182', 30, 1920, 1080),
