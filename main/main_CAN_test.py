@@ -79,8 +79,8 @@ def main():
 
     ### Process generation ###
     for d_name, proc_func in zip(data_names, proc_functions):
-        if not data_config[d_name]:
-            continue
+        # if not data_config[d_name]:
+        #     continue
         proc = multiprocessing.Process(target=proc_func, args=(d_name, save_flag, DATASET_PATH, *func_args[d_name], stop_event))
         procs.append(proc)
 
