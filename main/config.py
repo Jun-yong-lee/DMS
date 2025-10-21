@@ -20,6 +20,8 @@ config = {'SAVE_PATH': '/media/imlab/Samsung_T54/dms_rev1/',
           # '''
           'DATA': {'HMI': False, #Human Machine Interface
                    'CAN': True,
+                   'CAN_C': True,
+                   'CAN_M': True,
                    'INSIDE_FRONT_CAMERA': True,
                    'INSIDE_SIDE_CAMERA': True,
                    'OUTSIDE_FRONT_CENTER_CAMERA': True,
